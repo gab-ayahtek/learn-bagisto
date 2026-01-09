@@ -38,6 +38,9 @@ class RMAServiceProvider extends ServiceProvider
             \Webkul\Product\Contracts\Product::class,
             \Webkul\RMA\Models\Product::class
         );
+
+        $this->loadRoutesFrom(__DIR__ . '/../Routes/admin-routes.php');
+        $this->loadRoutesFrom(__DIR__ . '/../Routes/shop-routes.php');
     }
 
     /**
