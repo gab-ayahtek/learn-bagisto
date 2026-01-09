@@ -2,8 +2,8 @@
 
 namespace Webkul\RMA\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\ServiceProvider;
 
 class RMAServiceProvider extends ServiceProvider
 {
@@ -30,9 +30,14 @@ class RMAServiceProvider extends ServiceProvider
 
         $this->loadViewsFrom(__DIR__ . '/../Resources/views', 'rma');
 
-        Event::listen('bagisto.admin.layout.head', function($viewRenderEventManager) {
+        Event::listen('bagisto.admin.layout.head', function ($viewRenderEventManager) {
             $viewRenderEventManager->addTemplate('rma::admin.layouts.style');
         });
+
+        $this->app->concord->registerModel(
+            \Webkul\Product\Contracts\Product::class,
+            \Webkul\RMA\Models\Product::class
+        );
     }
 
     /**
